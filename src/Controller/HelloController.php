@@ -9,7 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HelloController extends AbstractController
 {
-    private array $messages = ['Hi', 'Hello', 'Bye!'];
+    private array $messages = [
+        ['message' => 'Hello', 'created' => '2022/09/12'],
+        ['message' => 'Hi', 'created' => '2022/04/12'],
+        ['message' => 'Bye!', 'created' => '2021/05/12']
+    ];
 
     #[Route('/{limit}', name: 'app_index', requirements: ['limit' => '\d+'])]
     public function index(int $limit = 1): Response

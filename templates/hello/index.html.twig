@@ -3,7 +3,8 @@
 {% block body %}
 	{% if messages|length > 0 %}
 		{% for message in messages|slice(0, limit) %}
-			{{ message }}
+			<div>{{ message.message }}</div>
+			{{ include ("hello/_message.html.twig", {poruka: message}) }}
 		{% endfor %}
 	{% else %}
 		<div>There is nothing here yet!</div>
