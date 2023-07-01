@@ -2,7 +2,7 @@
 
 {% block body %}
 	{% if messages|length > 0 %}
-		{% for message in messages %}
+		{% for message in messages|slice(0, limit) %}
 			{{ message }}
 		{% endfor %}
 	{% else %}
