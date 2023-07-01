@@ -16,7 +16,7 @@ class HelloController extends AbstractController
     ];
 
     #[Route('/{limit}', name: 'app_index', requirements: ['limit' => '\d+'])]
-    public function index(int $limit = 1): Response
+    public function index(int $limit = 3): Response
     {
         return $this->render('hello/index.html.twig', [
             'messages' => $this->messages,
