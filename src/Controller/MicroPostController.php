@@ -25,13 +25,19 @@ class MicroPostController extends AbstractController
         // $microPost->setTitle('Welcome to Disneyland!');
         // $posts->save($microPost, true);
 
-        $microPost = $posts->find(4);
-        $posts->remove($microPost, true);
+        // $microPost = $posts->find(4);
+        // $posts->remove($microPost, true);
 
         // dd($posts->findOneBy(['title' => 'Welcome to US!']));
         
         return $this->render('micro_post/index.html.twig', [
             'controller_name' => 'MicroPostController',
         ]);
+    }
+
+    #[Route('/micro-post/{post}', name: 'app_micro_post_show', requirements: ['id' => '\d+'])]
+    public function showOne(MicroPost $post)
+    {
+        dd($post);
     }
 }
