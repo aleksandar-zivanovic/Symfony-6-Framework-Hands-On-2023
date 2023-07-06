@@ -47,7 +47,10 @@ class MicroPostController extends AbstractController
             $microPostRepository->save($post, true);
 
             // Add a flash
+            $this->addFlash('success', 'Your micro post has been added!');
+
             // Redirect
+            return $this->redirectToRoute('app_micro_post');
         }
 
         return $this->render('micro_post/add.html.twig', [
