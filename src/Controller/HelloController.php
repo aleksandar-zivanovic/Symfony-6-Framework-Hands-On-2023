@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Entity\UserProfile;
+use App\Repository\UserProfileRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\DependencyInjection\Parameter;
@@ -31,6 +35,31 @@ class HelloController extends AbstractController
         // return new Response($this->messages[$id]);
         return $this->render('hello\showOne.html.twig', [
             'message' => $this->messages[$id],
+        ]);
+    }
+
+    
+
+    #[Route('/pg', name: 'app_playground')]
+    public function playground(UserProfileRepository $userProfileRepository, UserRepository $userRepository): Response
+    {
+        // $user = new User();
+        // $user->setEmail('pera@pera.com');
+        // $user->setPassword(111111);
+
+        // $userProfile = new UserProfile();
+        // $userProfile->setUser($user);
+        // $userProfileRepository->save($userProfile, true);
+
+        // $user = $userRepository->find(3);
+        // $userRepository->remove($user, true);
+
+        // $userProfile = $userProfileRepository->find(3);
+        // $userProfileRepository->remove($userProfile, true);
+        
+        return $this->render('hello/index.html.twig', [
+            'messages' => 'app_playground',
+            'limit' => 0,
         ]);
     }
 }
