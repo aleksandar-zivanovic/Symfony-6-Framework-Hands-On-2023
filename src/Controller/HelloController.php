@@ -2,10 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
+use App\Entity\MicroPost;
 use App\Entity\User;
 use App\Entity\UserProfile;
+use App\Repository\CommentRepository;
+use App\Repository\MicroPostRepository;
 use App\Repository\UserProfileRepository;
 use App\Repository\UserRepository;
+use DateTime;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\DependencyInjection\Parameter;
@@ -41,8 +46,29 @@ class HelloController extends AbstractController
     
 
     #[Route('/pg', name: 'app_playground')]
-    public function playground(UserProfileRepository $userProfileRepository, UserRepository $userRepository): Response
+    public function playground(MicroPostRepository $posts, CommentRepository $comments): Response
     {
+
+        // $post = $posts->find(12);
+        // $comment = $post->getComments()[0];
+        // $comments->remove($comment, true);
+
+        // $post = new MicroPost();
+        // $post->setTitle('Hello');
+        // $post->setText('Hello');
+        // $post->setCreated(new DateTime());
+
+        // $comment = new Comment();
+        // $comment->setText('Hello without cascada option');
+        // $comment->setPost($post);
+        // // $post->addComment($comment);
+        // // $posts->save($post, true);
+        // $comments->save($comment, true);
+
+        // $comment = $comments->find(2);
+        // $comment->setText('Hello with cascada:persist');
+        // $comments->save($comment, true);
+
         // $user = new User();
         // $user->setEmail('pera@pera.com');
         // $user->setPassword(111111);
