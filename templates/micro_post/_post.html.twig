@@ -19,6 +19,6 @@
 	</div>
 	<div class='flex'>
 		<a href='{{ path("app_micro_post_edit", {post: post.id}) }}' class='mr-2'>Edit</a>
-		<a href='{{ path("app_micro_post_comment", {post: post.id}) }}'>Comment</a>
+		<a href='{{ path("app_micro_post_comment", {post: post.id}) }}'>Comment {{ post.comments.count }}</a>
 	</div>
 </div>

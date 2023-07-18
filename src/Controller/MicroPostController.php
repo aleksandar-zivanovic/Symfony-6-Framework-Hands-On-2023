@@ -21,7 +21,7 @@ class MicroPostController extends AbstractController
     public function index(MicroPostRepository $posts): Response
     {
         return $this->render('micro_post/index.html.twig', [
-            'posts' => $posts->findAll(),
+            'posts' => $posts->findAllWithComments(),
         ]);
     }
 
@@ -118,32 +118,10 @@ class MicroPostController extends AbstractController
         ]);
     }
 
-    #[Route('/micro-post/{post}/test', name: 'app_micro_post_test')]
-    public function test(MicroPost $post ,Request $request, CommentRepository $comments): Response
-    // MicroPost $post povalči post iz baze na osnovu {post} parametra iz #[Route('/micro-post/{post}/test', ...)]
-    {
-        dd($post);
-        $form = $this->createForm(CommentType::class, new Comment());
-
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()) {
-            $comment = $form->getData();
-            $comment->setPost($post);
-            $comments->save($comment, true);
-
-            // Add a flash
-            $this->addFlash('success', 'Your comment has been added!');
-
-            // Redirect
-            return $this->redirectToRoute('app_micro_post_show', [
-                'post' => $post->getId(),
-            ]);
-        }
-
-        return $this->render('micro_post/comment.html.twig', [
-            'form' => $form,
-            'post' => $post,
-        ]);
-    }
+    // #[Route('/micro-post/{post}/test', name: 'app_micro_post_test')]
+    // public function test(MicroPost $post): void
+    // // MicroPost $post povalči post iz baze na osnovu {post} parametra iz #[Route('/micro-post/{post}/test', ...)]
+    // {
+    //     dd($post->getComments()->getValues());
+    // }
 }
