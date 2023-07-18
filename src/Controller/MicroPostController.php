@@ -63,7 +63,7 @@ class MicroPostController extends AbstractController
     }
 
     #[Route('/micro-post/{post}/edit', name: 'app_micro_post_edit')]
-    public function edit(MicroPost $post ,Request $request, MicroPostRepository $microPostRepository): Response
+    public function edit(MicroPost $post, Request $request, MicroPostRepository $microPostRepository): Response
     {
         // $form = $this->createFormBuilder($post)
         //     ->add('title')
@@ -88,6 +88,7 @@ class MicroPostController extends AbstractController
 
         return $this->render('micro_post/edit.html.twig', [
             'form' => $form,
+            'post' => $post,
         ]);
     }
 
