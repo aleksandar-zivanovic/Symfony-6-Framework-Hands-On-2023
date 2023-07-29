@@ -35,11 +35,16 @@ class MicroPostController extends AbstractController
     }
 
     #[Route('/micro-post/add', name: 'app_micro_post_add', priority: 2)]
-    // #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    #[IsGranted('ROLE_WRITER')]
     public function add(Request $request, MicroPostRepository $microPostRepository): Response
     {
         // $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        // dd($this->getUser()->getRoles());
+
+        /* jedan od nacina provere da li je korisnik verifikovan */
+        // if (!$this->getUser()->isVerified()) {
+            // /... neki kod .../
+        // }
+
         $microPost = new MicroPost();
         $form = $this->createFormBuilder($microPost)
             ->add('title')

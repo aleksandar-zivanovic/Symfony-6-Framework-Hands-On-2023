@@ -46,6 +46,12 @@ class EmailVerifier
 
         $user->setIsVerified(true);
 
+        /* 
+        jedan od nacina odobravanja postovanja korisinicima koju su verifikovani.
+        u kontroloru se dodaje atribut #[IsGranted('ROLE_TEST')]
+        */
+        // $user->setRoles(['ROLE_TEST']);
+
         $this->entityManager->persist($user);
         $this->entityManager->flush();
     }
