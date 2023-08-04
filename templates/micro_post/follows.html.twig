@@ -1,6 +1,10 @@
 {% extends "base.html.twig" %}
 
-{% block title %}All posts{% endblock %}
+{% block title %}Posts From People You Follow{% endblock %}
+
+{% block bread %}
+    → Posts From People You Follow
+{% endblock %}
 
 {% block body %}
 	{{ include('micro_post/_post_tabs.html.twig') }}
