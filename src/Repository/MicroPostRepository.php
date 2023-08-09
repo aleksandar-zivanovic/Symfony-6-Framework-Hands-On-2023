@@ -78,6 +78,17 @@ class MicroPostRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllPostsWithDetails(): array
+    {
+        return $this->findAllQuery(
+            withLikes: true,
+            withAuthors: true,
+            withComments: true,
+            withProfiles: true
+        )->getQuery()
+            ->getResult();
+    }
+
     public function findAllByAuthor(int|User $author): array
     {
         return $this->findAllQuery(
