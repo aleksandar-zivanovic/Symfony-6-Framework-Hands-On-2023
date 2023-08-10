@@ -2,18 +2,19 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Comment;
 use App\Entity\MicroPost;
 use App\Form\CommentType;
 use App\Form\MicroPostType;
 use App\Repository\CommentRepository;
 use App\Repository\MicroPostRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class MicroPostController extends AbstractController
 {
@@ -36,8 +37,10 @@ class MicroPostController extends AbstractController
     #[Route('/micro-post/follows', name: 'app_micro_post_follows')]
     public function follows(MicroPostRepository $posts): Response
     {
+        /** @var User $currentUser */
+        $currentUser = $this->getUser();
         return $this->render('micro_post/follows.html.twig', [
-            'posts' => $posts->findAllWithComments(),
+            'posts' => $posts->findAllByAuthors($currentUser->getFollows()),
         ]);
     }
 
