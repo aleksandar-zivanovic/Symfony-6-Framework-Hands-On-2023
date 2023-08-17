@@ -65,12 +65,16 @@ class MicroPostController extends AbstractController
             // /... neki kod .../
         // }
 
-        $microPost = new MicroPost();
-        $form = $this->createFormBuilder($microPost)
-            ->add('title')
-            ->add('text')
-            // ->add('submit', SubmitType::class, ['label' => 'save'])
-            ->getForm();
+        /* Nacin renderovanja forme iz kontrolera - bez MicroPostType fajla */
+        // $microPost = new MicroPost();
+        // $form = $this->createFormBuilder($microPost)
+        //     ->add('title')
+        //     ->add('text')
+        //     // ->add('submit', SubmitType::class, ['label' => 'save'])
+        //     ->getForm();
+
+        $post = new MicroPost();
+        $form = $this->createForm(MicroPostType::class, $post);
 
         $form->handleRequest($request);
 
